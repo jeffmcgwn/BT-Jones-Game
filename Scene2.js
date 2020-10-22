@@ -45,7 +45,7 @@ class Scene2 extends Phaser.Scene {
     this.firebtn.setScale(1.45);
 
     this.shark = new Shark({ scene: this, x: -100, y: 100 });
-    this.storm = new Storm({ scene: this, x: 256, y: 0 });
+    this.storm = new Storm({ scene: this, x: 256, y: -15 });
     this.movement = new Movement(this);
     this.enemyLife = 2;
     this.dispatch = new EventDispatcher();
@@ -66,6 +66,7 @@ class Scene2 extends Phaser.Scene {
     this.enemies.add(this.invader);
     this.enemies.add(this.flicky);
     this.enemies.add(this.fly);
+    this.enemies.add(this.storm);
 
     this.gameOver = false;
     // Boss Enemies Group
@@ -484,11 +485,11 @@ class Scene2 extends Phaser.Scene {
     this.grid.tilePositionY -= 4;
     this.movePlayerManager();
     this.startGame(0, 0, newTimer);
-
+    this.movement.moveBtSpider(this.btspider, 3);
     // Starting Ships
     this.movement.move(this.ship1, 2);
     this.movement.move(this.ship2, 3);
-    this.storm.move(this.storm, 2);
+
     if (this.score >= 300) {
       this.movement.move(this.invader, 4);
     }
@@ -520,6 +521,7 @@ class Scene2 extends Phaser.Scene {
 
     if (this.score >= 2200) {
       this.movement.moveShip3(this.ship5, 2);
+      this.storm.move(this.storm, 2);
     }
     if (this.score >= 2700) {
       this.movement.moveShip3(this.epoch, 3);
@@ -527,7 +529,6 @@ class Scene2 extends Phaser.Scene {
 
     if (this.score >= 3000) {
       this.clearBadGuys(this.btlife);
-      this.movement.moveBtSpider(this.btspider, 3);
     }
 
     if (this.shark.sharklife == 0) {
@@ -1142,7 +1143,6 @@ class Scene2 extends Phaser.Scene {
 
   startGame(x, y, timer) {
     if (timer.delay <= 300) {
-      console.log(timer.delay);
       timer.delay--;
     } else if (timer.delay <= 200) {
       console.log(2);
@@ -1151,7 +1151,7 @@ class Scene2 extends Phaser.Scene {
       console.log(1);
       timer.delay--;
     } else if (timer.delay == 0) {
-      timer.delay++;
+      return;
     }
   }
 

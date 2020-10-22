@@ -9,17 +9,9 @@ class Storm extends Phaser.GameObjects.Sprite {
   update() {}
 
   move(ship, speed) {
-    const random = Math.floor(Math.random() * 2);
-    ship.x = 256;
-    if (random == 0) {
-      ship.y += speed;
-      ship.x += speed;
-    } else if (random == 1) {
-      ship.y += speed;
-      ship.x -= speed;
-    }
-    console.log(random);
-    console.log(ship.x);
+    ship.y += speed;
+    ship.x -= speed;
+
     if (ship.y > 272) {
       this.scene.resetShipPos(ship);
     }
