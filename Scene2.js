@@ -431,6 +431,7 @@ class Scene2 extends Phaser.Scene {
     this.enemyBlink(this.btspider);
     this.btlife -= 1;
     this.btBabyAttack();
+
     this.btAttack();
     projectile.destroy();
 
@@ -485,7 +486,7 @@ class Scene2 extends Phaser.Scene {
     this.grid.tilePositionY -= 4;
     this.movePlayerManager();
     this.startGame(0, 0, newTimer);
-    this.movement.moveBtSpider(this.btspider, 3);
+
     // Starting Ships
     this.movement.move(this.ship1, 2);
     this.movement.move(this.ship2, 3);
@@ -529,6 +530,7 @@ class Scene2 extends Phaser.Scene {
 
     if (this.score >= 3000) {
       this.clearBadGuys(this.btlife);
+      this.movement.moveBtSpider(this.btspider, 3);
     }
 
     if (this.shark.sharklife == 0) {
@@ -764,6 +766,12 @@ class Scene2 extends Phaser.Scene {
     var randomX = Phaser.Math.Between(10, 246);
     ship.x = randomX;
   }
+
+  destroyShip(ship) {
+    if (ship.y < 100) {
+      ship.destroy();
+    }
+  }
   // CLEAR / RESPAWN FUNCTIONS
   clearBadGuys(bosslife) {
     if (bosslife > 0) {
@@ -973,18 +981,57 @@ class Scene2 extends Phaser.Scene {
         repeat: 1,
         callback: function () {
           var btbaby = new Btbabies(this, 10, 20);
-          var btbaby = new Btbabies(this, 30, 10);
-          var btbaby = new Btbabies(this, 50, 12);
-          var btbaby = new Btbabies(this, 70, 5);
-          var btbaby = new Btbabies(this, 90, 0);
-          var btbaby = new Btbabies(this, 110, -10);
-          var btbaby = new Btbabies(this, 130, 1);
-          var btbaby = new Btbabies(this, 150, 5);
-          var btbaby = new Btbabies(this, 170, 20);
-          var btbaby = new Btbabies(this, 190, 10);
-          var btbaby = new Btbabies(this, 210, -12);
-          var btbaby = new Btbabies(this, 230, 9);
-          var btbaby = new Btbabies(this, 250, 11);
+          var btbaby2 = new Btbabies(this, 30, 10);
+          var btbaby3 = new Btbabies(this, 50, 12);
+          var btbaby4 = new Btbabies(this, 70, 5);
+          var btbaby5 = new Btbabies(this, 90, 0);
+          var btbaby6 = new Btbabies(this, 110, -10);
+          var btbaby7 = new Btbabies(this, 130, 1);
+          var btbaby8 = new Btbabies(this, 150, 5);
+          var btbaby9 = new Btbabies(this, 170, 20);
+          var btbaby10 = new Btbabies(this, 190, 10);
+          var btbaby11 = new Btbabies(this, 210, -12);
+          var btbaby12 = new Btbabies(this, 230, 9);
+          var btbaby13 = new Btbabies(this, 250, 11);
+          if (btbaby.y > 100) {
+            btbaby.destroy();
+          }
+          if (btbaby2.y > 100) {
+            btbaby2.destroy();
+          }
+          if (btbaby3.y > 100) {
+            btbaby3.destroy();
+          }
+          if (btbaby4.y > 100) {
+            btbaby4.destroy();
+          }
+          if (btbaby5.y > 100) {
+            btbaby5.destroy();
+          }
+          if (btbaby6.y > 100) {
+            btbaby6.destroy();
+          }
+          if (btbaby7.y > 100) {
+            btbaby7.destroy();
+          }
+          if (btbaby8.y > 100) {
+            btbaby8.destroy();
+          }
+          if (btbaby9.y > 100) {
+            btbaby9.destroy();
+          }
+          if (btbaby10.y > 100) {
+            btbaby10.destroy();
+          }
+          if (btbaby11.y > 100) {
+            btbaby11.destroy();
+          }
+          if (btbaby12.y > 100) {
+            btbaby12.destroy();
+          }
+          if (btbaby13.y > 100) {
+            btbaby13.destroy();
+          }
         },
         callbackScope: this,
       });
